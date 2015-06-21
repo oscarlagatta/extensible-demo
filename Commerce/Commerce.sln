@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.Engine", "Commerce.Engine\Commerce.Engine.csproj", "{982B9EA3-29F2-43B6-8CD1-EC69E5E0CE0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.TestClient", "Commerce.TestClient\Commerce.TestClient.csproj", "{5B605CE8-059C-4B22-BC34-B73F74D6A882}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{F06759F0-BA6E-4242-AAB7-9AF01327EED7}"
+	ProjectSection(SolutionItems) = preProject
+		initialsetup.txt = initialsetup.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{982B9EA3-29F2-43B6-8CD1-EC69E5E0CE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982B9EA3-29F2-43B6-8CD1-EC69E5E0CE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982B9EA3-29F2-43B6-8CD1-EC69E5E0CE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982B9EA3-29F2-43B6-8CD1-EC69E5E0CE0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B605CE8-059C-4B22-BC34-B73F74D6A882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B605CE8-059C-4B22-BC34-B73F74D6A882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B605CE8-059C-4B22-BC34-B73F74D6A882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B605CE8-059C-4B22-BC34-B73F74D6A882}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
