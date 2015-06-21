@@ -1,7 +1,7 @@
-﻿using System;
-using Commerce.Engine.Contracts;
+﻿using Commerce.Common;
+using System;
 
-namespace Commerce.Engine
+namespace Commerce.Providers
 {
     public class PaymentProcessor : IPaymentProcessor
     {
@@ -12,5 +12,9 @@ namespace Commerce.Engine
 
             return true;
         }
+
+        public string LoginName { get; set; }
+
+        public string Password { get; set; }
     }
 }

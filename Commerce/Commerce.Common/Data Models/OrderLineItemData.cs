@@ -1,4 +1,4 @@
-﻿namespace Commerce.Engine
+﻿namespace Commerce.Common.DataModels
 {
     public class OrderLineItemData
     {

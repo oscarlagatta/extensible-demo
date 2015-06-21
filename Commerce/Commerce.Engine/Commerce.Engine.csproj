@@ -41,6 +41,7 @@
       <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -51,23 +52,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommerceManager.cs" />
+    <Compile Include="ConfigurationFactory.cs" />
+    <Compile Include="Configuration\CommerceEngineConfigurationSection.cs" />
     <Compile Include="Contracts\IStoreRepository.cs" />
     <Compile Include="Data Access\StoreRepository.cs" />
-    <Compile Include="Data Models\OrderData.cs" />
-    <Compile Include="Data Models\OrderLineItemData.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Inventory.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\PurchasedItem.cs" />
     <Compile Include="Contracts\ICommerceManager.cs" />
-    <Compile Include="Contracts\IPaymentProcessor.cs" />
-    <Compile Include="Contracts\IMailer.cs" />
-    <Compile Include="Mailer.cs" />
-    <Compile Include="PaymentProcessor.cs" />
+    <Compile Include="Contracts\IConfigurationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commerce.Common\Commerce.Common.csproj">
+      <Project>{291f7e65-fa0f-464e-892f-b56ac9bd0391}</Project>
+      <Name>Commerce.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

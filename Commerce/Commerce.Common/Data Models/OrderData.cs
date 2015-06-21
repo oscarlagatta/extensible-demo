@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Commerce.Engine
+namespace Commerce.Common.DataModels
 {
     public class OrderData
     {

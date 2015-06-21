@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Commerce.Common.DataModels;
 using Commerce.Engine;
 using Commerce.Engine.Contracts;
 using Microsoft.Practices.Unity;
@@ -28,8 +29,7 @@ namespace Commerce.TestClient
             // register my types
             container.RegisterType<IStoreRepository, StoreRepository>()
                      .RegisterType<ICommerceManager, CommerceManager>()
-                     .RegisterType<IPaymentProcessor, PaymentProcessor>()
-                     .RegisterType<IMailer, Mailer>();
+                     .RegisterType<IConfigurationFactory, ConfigurationFactory>();
 
             #region Change 2.0
             // In order for the container resolve process kick start 

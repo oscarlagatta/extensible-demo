@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Transactions;
+using Commerce.Common;
+using Commerce.Common.DataModels;
+using Commerce.Engine.Configuration;
 using Commerce.Engine.Contracts;
 using Commerce.Engine.Entities;
 
@@ -8,15 +12,50 @@ namespace Commerce.Engine
 {
     public class CommerceManager : ICommerceManager
     {
-        public CommerceManager(IStoreRepository storeRepository, 
-                               IPaymentProcessor paymentProcessor,
-                               IMailer mailer)
+        public CommerceManager(IStoreRepository storeRepository,
+            IConfigurationFactory configurationFactory)
         {
-            this._storeRepository = storeRepository;
-            _paymentProcessor = paymentProcessor;
-            _mailer = mailer;
-        }
+            _storeRepository = storeRepository;
+            // we need to bring the configuration from the config file
 
+            #region Breaks testability
+            /*
+             * We are using providers which is great
+             * We're hardcoding how we obtain them NOT GREAT :( 
+             * A unit test shouldn't be locked to this behaviour
+             * 
+             * SOLUTION
+             * --------
+             * Wrap it in a factory class
+             *  get the configuration
+             *  fill the provider class with their config-based values
+             *  
+             * Abstract out the factory and inject it into the engine
+             */
+            //CommerceEngineConfigurationSection config = ConfigurationManager.GetSection("commerceEngine") as CommerceEngineConfigurationSection;
+
+
+            //if (config != null)
+            //{
+            //    _paymentProcessor = Activator.CreateInstance(Type.GetType(config.PaymentProcessor.type)) as IPaymentProcessor;
+            //    _paymentProcessor.LoginName = config.PaymentProcessor.LoginName;
+            //    _paymentProcessor.Password = config.PaymentProcessor.Password;
+
+            //    _mailer = Activator.CreateInstance(Type.GetType(config.Mailer.type)) as IMailer;
+            //    _mailer.FromAddres = config.Mailer.FromAddress;
+            //    _mailer.SmptServer = config.Mailer.SmtpServer;
+            //}
+            #endregion
+
+            #region Fixed for testability 
+
+            _paymentProcessor = configurationFactory.GetPaymentProcessor();
+            _mailer = configurationFactory.GetMailer();
+
+            #endregion
+
+        }
+        
         IStoreRepository _storeRepository;
         IPaymentProcessor _paymentProcessor;
         IMailer _mailer;
@@ -77,7 +116,7 @@ namespace Commerce.Engine
                     double amount = 0;
                     foreach (OrderLineItemData lineItem in orderData.LineItems)
                     {
-                        amount += (lineItem.Quantity*lineItem.PurchasePrice);
+                        amount += (lineItem.Quantity * lineItem.PurchasePrice);
                     }
 
                     #region Change 3
@@ -106,10 +145,11 @@ namespace Commerce.Engine
             }
             catch (Exception)
             {
-                Mailer mailer  = new Mailer();
-                mailer.SendRejectionEmail(orderData);
+                //Mailer mailer = new Mailer();
+                _mailer.SendRejectionEmail(orderData);
                 throw;
             }
         }
+
     }
 }
