@@ -1,0 +1,4 @@
+Install 3rd-party tools for GIT, visual studio detected GIT  and asked to install using WebPI
+
+Third part tools will be installed using Web Platform installer (WebPI)
+Using Web Platform installer, install the Git for windows x86, MSYSGIT, 16.99MB
