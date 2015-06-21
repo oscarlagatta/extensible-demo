@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,8 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommerceManager.cs" />
+    <Compile Include="Data Access\StoreRepository.cs" />
+    <Compile Include="Data Models\OrderData.cs" />
+    <Compile Include="Data Models\OrderLineItemData.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Inventory.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\PurchasedItem.cs" />
+    <Compile Include="Mailer.cs" />
+    <Compile Include="PaymentProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
