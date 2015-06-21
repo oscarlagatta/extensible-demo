@@ -1,8 +1,9 @@
 ﻿using System;
+using Commerce.Engine.Contracts;
 
 namespace Commerce.Engine
 {
-    public class PaymentProcessor
+    public class PaymentProcessor : IPaymentProcessor
     {
         public bool ProcessCreditCard(string customerName, string creditCard, string expirationDate, double amount)
         {

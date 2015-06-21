@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Linq;
 using System.Transactions;
+using Commerce.Engine.Contracts;
 using Commerce.Engine.Entities;
 
 namespace Commerce.Engine
 {
-    public class CommerceManager
+    public class CommerceManager : ICommerceManager
     {
-        public CommerceManager(StoreRepository storeRepository)
+        public CommerceManager(IStoreRepository storeRepository, 
+                               IPaymentProcessor paymentProcessor,
+                               IMailer mailer)
         {
             this._storeRepository = storeRepository;
+            _paymentProcessor = paymentProcessor;
+            _mailer = mailer;
         }
 
-        private StoreRepository _storeRepository;
-
+        IStoreRepository _storeRepository;
+        IPaymentProcessor _paymentProcessor;
+        IMailer _mailer;
 
         public void ProcessOrder(OrderData orderData)
         {
@@ -74,9 +80,13 @@ namespace Commerce.Engine
                         amount += (lineItem.Quantity*lineItem.PurchasePrice);
                     }
 
-                    PaymentProcessor paymentProcessor = new PaymentProcessor();
+                    #region Change 3
+                    // remove instantiation
+                    // PaymentProcessor paymentProcessor = new PaymentProcessor();
+                    // use variable  _paymentProcessor
+                    #endregion
 
-                    bool paymentSuccess = paymentProcessor.ProcessCreditCard(customer.Name, orderData.CreditCard,
+                    bool paymentSuccess = _paymentProcessor.ProcessCreditCard(customer.Name, orderData.CreditCard,
                         orderData.ExpirationDate, amount);
                     if (!paymentSuccess)
                     {
@@ -86,8 +96,13 @@ namespace Commerce.Engine
                     scope.Complete();
                 }
 
-                Mailer mailer = new Mailer();
-                mailer.SendInvoicEmail(orderData);
+                #region Change 3
+                // remove instantiation
+                // Mailer mailer = new Mailer();
+                // use variable _mailer
+                #endregion
+
+                _mailer.SendInvoicEmail(orderData);
             }
             catch (Exception)
             {

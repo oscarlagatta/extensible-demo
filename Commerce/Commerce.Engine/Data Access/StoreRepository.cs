@@ -1,11 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Commerce.Engine.Contracts;
 using Commerce.Engine.Entities;
 
 namespace Commerce.Engine
 {
-    public class StoreRepository
+    public class StoreRepository : IStoreRepository
     {
+        public StoreRepository()
+        {
+            Initialize();
+        }
+
         private List<Product> _Products = null;
         private List<Inventory> _ProductInventory = null;
         private List<Customer> _Customers = null;

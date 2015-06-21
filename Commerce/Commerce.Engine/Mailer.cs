@@ -1,8 +1,9 @@
 ﻿using System;
+using Commerce.Engine.Contracts;
 
 namespace Commerce.Engine
 {
-    public class Mailer
+    public class Mailer : IMailer
     {
         public void SendInvoicEmail(OrderData orderData)
         {
